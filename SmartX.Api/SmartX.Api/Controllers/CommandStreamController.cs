@@ -67,7 +67,7 @@ public class CommandStreamController : ControllerBase
 		public IActionResult RegisterDevice([FromBody] string deviceId)
 		{
 			// Add device into dictionary with status set to online
-			Devices[devicesId] = "Online";
+			Devices[deviceId] = "Online";
 			return Ok(new { message = $"Device '{deviceId}' registered. " });
 
 		}
