@@ -30,6 +30,8 @@ namespace SmartX.Api
 
 			app.MapControllers();
 
+			app.MapGet("/", () => "SmartX API is running. Try /WeatherForecast for data. ");
+
 			app.Run();
 		}
 	}
