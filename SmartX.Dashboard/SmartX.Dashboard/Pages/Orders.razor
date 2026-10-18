@@ -1,0 +1,69 @@
+@page "/orders"
+@inject HttpClient Http
+
+<h3>Orders Management</h3>
+
+<p>@statusMessage</p>
+
+<!-- List all orders -->
+<ul>
+    @foreach (var order in orders)
+    {
+        <li>
+            <b>@order.Customer</b> - @order.Status
+            <button @onclick="() => EditOrder(order.Id)">Edit</button>
+            <button @onclick="() => DeleteOrder(order.Id)">Delete</button>
+        </li>
+    }
+</ul>
+
+<!-- Add new order -->
+<div>
+    <input @bind="newCustomer" placeholder="Customer name" />
+    <input @bind="newStatus" placeholder="Status" />
+    <button @onclick="AddOrder">Add Order</button>
+</div>
+
+@code {
+    private string statusMessage = "Ready.";
+    private List<Order> orders = new();
+    private string newCustomer = "";
+    private string newStatus = "Pending";
+
+
+    public class Order
+    {
+        public int Id { get; set; }
+        public string Customer { get; set; } = "";
+        public string Status { get; set; } = "Pending";
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+       
+        orders = await Http.GetFromJsonAsync<List<Order>>("/api/orders") ?? new();
+    }
+
+    private async Task AddOrder()
+    {
+        var newOrder = new Order { Customer = newCustomer, Status = newStatus };
+        var response = await Http.PostAsJsonAsync("/api/orders", newOrder);
+        statusMessage = await response.Content.ReadAsStringAsync();
+        orders = await Http.GetFromJsonAsync<List<Order>>("/api/orders") ?? new();
+    }
+
+    private async Task EditOrder(int id)
+    {
+        var updated = new Order { Id = id, Customer = "Order Updated. ", Status = "Completed" };
+        var response = await Http.PutAsJsonAsync($"/api/orders/{id}", updated);
+        statusMessage = await response.Content.ReadAsStringAsync();
+        orders = await Http.GetFromJsonAsync<List<Order>>("/api/orders") ?? new();
+    }
+
+    private async Task DeleteOrder(int id)
+    {
+        var response = await Http.DeleteAsync($"/api/orders/{id}");
+        statusMessage = await response.Content.ReadAsStringAsync();
+        orders = await Http.GetFromJsonAsync<List<Order>>("/api/orders") ?? new();
+    }
+}
