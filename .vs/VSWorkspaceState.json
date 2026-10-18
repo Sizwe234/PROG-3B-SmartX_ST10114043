@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\SmartX.Api",
+    "\\SmartX.Api\\SmartX.Api"
   ],
+  "SelectedNode": "\\SmartX.Api\\SmartX.Api\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

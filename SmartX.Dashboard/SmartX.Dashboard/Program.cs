@@ -13,6 +13,8 @@ namespace SmartX.Dashboard
 
 			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7223/") });
 
+			builder.Logging.SetMinimumLevel(LogLevel.Debug);
+
 			await builder.Build().RunAsync();
 		}
 	}

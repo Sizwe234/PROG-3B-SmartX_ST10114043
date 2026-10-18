@@ -1,0 +1,60 @@
+@page "/commandstream"
+@inject HttpClient Http
+
+<h3>Command Stream</h3>
+
+<p>@statusMessage</p>
+
+<button @onclick="SendTelemetry">Send Telemetry Packet</button>
+<button @onclick="SendCritical">Send Critical Alert</button>
+<button @onclick="SendCommand">Send Command</button>
+<button @onclick="UndoCommand">Undo Last Command</button>
+<button @onclick="RegisterDevice">Register Device</button>
+<button @onclick="AddError">Add Error State</button>
+<button @onclick="GetStatus">Check System Status</button>
+
+@code {
+    private string statusMessage = "Ready.";
+
+    private async Task SendTelemetry()
+    {
+        var response = await Http.PostAsJsonAsync("/api/commandstream/telemetry", "packet-123");
+        statusMessage = await response.Content.ReadAsStringAsync();
+    }
+
+    private async Task SendCritical()
+    {
+        var response = await Http.PostAsJsonAsync("/api/commandstream/critical", "critical-alert");
+        statusMessage = await response.Content.ReadAsStringAsync();
+    }
+
+    private async Task SendCommand()
+    {
+        var response = await Http.PostAsJsonAsync("/api/commandstream/command", "pump-on");
+        statusMessage = await response.Content.ReadAsStringAsync();
+    }
+
+    private async Task UndoCommand()
+    {
+        var response = await Http.PostAsync("/api/commandstream/undo", null);
+        statusMessage = await response.Content.ReadAsStringAsync();
+    }
+
+    private async Task RegisterDevice()
+    {
+        var response = await Http.PostAsJsonAsync("/api/commandstream/register", "Device-A");
+        statusMessage = await response.Content.ReadAsStringAsync();
+    }
+
+    private async Task AddError()
+    {
+        var response = await Http.PostAsJsonAsync("/api/commandstream/error", "Error-404");
+        statusMessage = await response.Content.ReadAsStringAsync();
+    }
+
+    private async Task GetStatus()
+    {
+        var response = await Http.GetAsync("/api/commandstream/status");
+        statusMessage = await response.Content.ReadAsStringAsync();
+    }
+}
