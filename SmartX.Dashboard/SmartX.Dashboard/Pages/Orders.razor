@@ -3,13 +3,13 @@
 
 <h3>Orders Management</h3>
 
-<!-- Show status messages clearly -->
+
 @if (!string.IsNullOrEmpty(statusMessage))
 {
     <p style="color:green">@statusMessage</p>
 }
 
-<!-- Orders displayed in a table for clarity -->
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -24,19 +24,50 @@
         {
             <tr>
                 <td>@order.Id</td>
-                <td>@order.Customer</td>
-                <td>@order.Status</td>
+
+
                 <td>
-                    <!-- Edit and Delete buttons -->
-                    <button @onclick="() => EditOrder(order.Id)">Edit</button>
-                    <button @onclick="() => DeleteOrder(order.Id)">Delete</button>
+                    @if (editOrderId == order.Id)
+                    {
+                        <input @bind="editCustomer" />
+                    }
+                    else
+                    {
+                        @order.Customer
+                    }
+                </td>
+
+
+                <td>
+                    @if (editOrderId == order.Id)
+                    {
+                        <input @bind="editStatus" />
+                    }
+                    else
+                    {
+                        @order.Status
+                    }
+                </td>
+
+
+                <td>
+                    @if (editOrderId == order.Id)
+                    {
+                        <button @onclick="() => SaveEdit(order.Id)">Save</button>
+                        <button @onclick="CancelEdit">Cancel</button>
+                    }
+                    else
+                    {
+                        <button @onclick="() => StartEditOrder(order)">Edit</button>
+                        <button @onclick="() => DeleteOrder(order.Id)">Delete</button>
+                    }
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-<!-- Add new order section -->
+
 <div style="margin-top:20px;">
     <input @bind="newCustomer" placeholder="Customer name" />
     <input @bind="newStatus" placeholder="Status" />
@@ -44,17 +75,17 @@
 </div>
 
 @code {
-    // Status message shown at the top
     private string statusMessage = "Ready.";
-
-    // List of orders loaded from API
     private List<Order> orders = new();
 
-    // Fields for new order input
     private string newCustomer = "";
     private string newStatus = "Pending";
 
-    // Order model matches API
+
+    private int editOrderId = -1;
+    private string editCustomer = "";
+    private string editStatus = "";
+
     public class Order
     {
         public int Id { get; set; }
@@ -62,13 +93,11 @@
         public string Status { get; set; } = "Pending";
     }
 
-    // Load orders when page opens
     protected override async Task OnInitializedAsync()
     {
         orders = await Http.GetFromJsonAsync<List<Order>>("/api/orders") ?? new();
     }
 
-    // Add a new order
     private async Task AddOrder()
     {
         var newOrder = new Order { Customer = newCustomer, Status = newStatus };
@@ -77,16 +106,32 @@
         orders = await Http.GetFromJsonAsync<List<Order>>("/api/orders") ?? new();
     }
 
-    // Edit an existing order (for now, hard-coded update)
-    private async Task EditOrder(int id)
+
+    private void StartEditOrder(Order order)
     {
-        var updated = new Order { Id = id, Customer = "Order Updated", Status = "Completed" };
+        editOrderId = order.Id;
+        editCustomer = order.Customer;
+        editStatus = order.Status;
+    }
+
+
+    private void CancelEdit()
+    {
+        editOrderId = -1;
+        editCustomer = "";
+        editStatus = "";
+    }
+
+
+    private async Task SaveEdit(int id)
+    {
+        var updated = new Order { Id = id, Customer = editCustomer, Status = editStatus };
         var response = await Http.PutAsJsonAsync($"/api/orders/{id}", updated);
         statusMessage = await response.Content.ReadAsStringAsync();
         orders = await Http.GetFromJsonAsync<List<Order>>("/api/orders") ?? new();
+        CancelEdit();
     }
 
-    // Delete an order
     private async Task DeleteOrder(int id)
     {
         var response = await Http.DeleteAsync($"/api/orders/{id}");
