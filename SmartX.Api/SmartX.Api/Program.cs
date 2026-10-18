@@ -1,4 +1,3 @@
-
 namespace SmartX.Api
 {
 	public class Program
@@ -8,11 +7,18 @@ namespace SmartX.Api
 			var builder = WebApplication.CreateBuilder(args);
 
 			// Add services to the container.
-
 			builder.Services.AddControllers();
-			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
+
+			// Add CORS policy to allow Dashboard (http://localhost:5260)
+			builder.Services.AddCors(options =>
+			{
+				options.AddPolicy("AllowDashboard",
+					policy => policy.WithOrigins("http://localhost:5260")
+									.AllowAnyHeader()
+									.AllowAnyMethod());
+			});
 
 			var app = builder.Build();
 
@@ -25,12 +31,14 @@ namespace SmartX.Api
 
 			app.UseHttpsRedirection();
 
-			app.UseAuthorization();
+			// Enable CORS before authorization
+			app.UseCors("AllowDashboard");
 
+			app.UseAuthorization();
 
 			app.MapControllers();
 
-			app.MapGet("/", () => "SmartX API is running. Try /WeatherForecast for data. ");
+			app.MapGet("/", () => "SmartX API is running. Try /WeatherForecast for data.");
 
 			app.Run();
 		}

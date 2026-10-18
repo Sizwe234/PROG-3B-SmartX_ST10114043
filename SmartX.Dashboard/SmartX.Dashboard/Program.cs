@@ -11,7 +11,9 @@ namespace SmartX.Dashboard
 			builder.RootComponents.Add<App>("#app");
 			builder.RootComponents.Add<HeadOutlet>("head::after");
 
-			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5000/") });
+			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7223/") });
+
+			builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
 			await builder.Build().RunAsync();
 		}
