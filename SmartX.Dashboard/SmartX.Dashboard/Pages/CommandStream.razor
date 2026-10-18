@@ -1,60 +1,178 @@
 @page "/commandstream"
 @inject HttpClient Http
 
-<h3>Command Stream</h3>
+<h3>Real-Time Command Stream & History</h3>
 
-<p>@statusMessage</p>
 
-<button @onclick="SendTelemetry">Send Telemetry Packet</button>
-<button @onclick="SendCritical">Send Critical Alert</button>
-<button @onclick="SendCommand">Send Command</button>
-<button @onclick="UndoCommand">Undo Last Command</button>
-<button @onclick="RegisterDevice">Register Device</button>
-<button @onclick="AddError">Add Error State</button>
-<button @onclick="GetStatus">Check System Status</button>
+<p style="color:green">@statusMessage</p>
+
+
+<div style="margin-bottom:15px;">
+    <button @onclick="SendTelemetry">Send Telemetry Packet</button>
+    <button @onclick="SendCritical">Send Critical Alert</button>
+    <button @onclick="SendCommand">Send Command</button>
+    <button @onclick="UndoCommand">Undo Last Command</button>
+    <button @onclick="RegisterDevice">Register Device</button>
+    <button @onclick="AddError">Add Error State</button>
+    <button @onclick="GetStatus">Check System Status</button>
+</div>
+
+
+<h4>Telemetry Queue (FIFO)</h4>
+<ul>
+    @foreach (var packet in telemetryQueue)
+    {
+        <li>@packet</li>
+    }
+</ul>
+
+<h4>Critical Alerts (Priority Queue)</h4>
+<ul>
+    @foreach (var alert in criticalAlerts)
+    {
+        <li>@alert</li>
+    }
+</ul>
+
+<h4>Undo Stack (Manual Commands)</h4>
+<ul>
+    @foreach (var cmd in undoStack)
+    {
+        <li>@cmd</li>
+    }
+</ul>
+
+<h4>Registered Devices (Dictionary)</h4>
+<ul>
+    @foreach (var device in devices.Values)
+    {
+        <li>@device</li>
+    }
+</ul>
+
+<h4>Error States (HashSet)</h4>
+<ul>
+    @foreach (var error in errorStates)
+    {
+        <li>@error</li>
+    }
+</ul>
+
+
+<h4>Suggested Actions</h4>
+<ul>
+    @foreach (var suggestion in suggestions)
+    {
+        <li>@suggestion</li>
+    }
+</ul>
 
 @code {
     private string statusMessage = "Ready.";
 
+
+    private Queue<string> telemetryQueue = new();
+    private PriorityQueue<string, int> criticalQueue = new();
+    private List<string> criticalAlerts = new();
+    private Stack<string> undoStack = new();
+    private Dictionary<string, string> devices = new();
+    private HashSet<string> errorStates = new();
+    private List<string> suggestions = new();
+
+
     private async Task SendTelemetry()
     {
-        var response = await Http.PostAsJsonAsync("/api/commandstream/telemetry", "packet-123");
+        string packet = $"Telemetry-{DateTime.Now:HHmmss}";
+        telemetryQueue.Enqueue(packet);
+        var response = await Http.PostAsJsonAsync("/api/commandstream/telemetry", packet);
         statusMessage = await response.Content.ReadAsStringAsync();
+        UpdateSuggestions("telemetry");
     }
+
 
     private async Task SendCritical()
     {
-        var response = await Http.PostAsJsonAsync("/api/commandstream/critical", "critical-alert");
+        string alert = $"Critical-{DateTime.Now:HHmmss}";
+        criticalQueue.Enqueue(alert, 1); 
+        criticalAlerts.Add(alert);
+        var response = await Http.PostAsJsonAsync("/api/commandstream/critical", alert);
         statusMessage = await response.Content.ReadAsStringAsync();
+        UpdateSuggestions("critical");
     }
+
 
     private async Task SendCommand()
     {
-        var response = await Http.PostAsJsonAsync("/api/commandstream/command", "pump-on");
+        string command = "Pump-On";
+        undoStack.Push(command);
+        var response = await Http.PostAsJsonAsync("/api/commandstream/command", command);
         statusMessage = await response.Content.ReadAsStringAsync();
+        UpdateSuggestions("command");
     }
 
     private async Task UndoCommand()
     {
-        var response = await Http.PostAsync("/api/commandstream/undo", null);
-        statusMessage = await response.Content.ReadAsStringAsync();
+        if (undoStack.Count > 0)
+        {
+            string last = undoStack.Pop();
+            var response = await Http.PostAsJsonAsync("/api/commandstream/undo", last);
+            statusMessage = await response.Content.ReadAsStringAsync();
+        }
+        else
+        {
+            statusMessage = "No commands to undo.";
+        }
     }
+
 
     private async Task RegisterDevice()
     {
-        var response = await Http.PostAsJsonAsync("/api/commandstream/register", "Device-A");
+        string id = $"Device-{devices.Count + 1}";
+        devices[id] = $"Registered {id}";
+        var response = await Http.PostAsJsonAsync("/api/commandstream/register", id);
         statusMessage = await response.Content.ReadAsStringAsync();
     }
 
+
     private async Task AddError()
     {
-        var response = await Http.PostAsJsonAsync("/api/commandstream/error", "Error-404");
-        statusMessage = await response.Content.ReadAsStringAsync();
+        string error = $"Error-{DateTime.Now:HHmmss}";
+        if (errorStates.Add(error))
+        {
+            var response = await Http.PostAsJsonAsync("/api/commandstream/error", error);
+            statusMessage = await response.Content.ReadAsStringAsync();
+        }
+        else
+        {
+            statusMessage = "Duplicate error ignored.";
+        }
     }
+
 
     private async Task GetStatus()
     {
         var response = await Http.GetAsync("/api/commandstream/status");
         statusMessage = await response.Content.ReadAsStringAsync();
+    }
+
+
+    private void UpdateSuggestions(string action)
+    {
+        suggestions.Clear();
+        if (action == "telemetry")
+        {
+            suggestions.Add("Check moisture sensor");
+            suggestions.Add("Review latest telemetry logs");
+        }
+        else if (action == "critical")
+        {
+            suggestions.Add("Trigger emergency pump shutdown");
+            suggestions.Add("Inspect power relay immediately");
+        }
+        else if (action == "command")
+        {
+            suggestions.Add("Undo last command if incorrect");
+            suggestions.Add("Schedule follow-up command");
+        }
     }
 }
