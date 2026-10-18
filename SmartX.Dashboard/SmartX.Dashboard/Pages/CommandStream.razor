@@ -17,18 +17,23 @@
     <button @onclick="GetStatus">Check System Status</button>
 </div>
 
+<div style="margin-bottom:15px;">
+    <input @bind="searchTerm" placeholder="Search devices or alerts..." />
+    <button @onclick="ApplyFilter">Filter</button>
+</div>
+
 
 <h4>Telemetry Queue (FIFO)</h4>
 <ul>
-    @foreach (var packet in telemetryQueue)
+    @foreach (var packet in FilteredTelemetry())
     {
-        <li>@packet</li>
+        <li>@packet.DeviceId - Value: @packet.Value - Time: @packet.Timestamp</li>
     }
 </ul>
 
 <h4>Critical Alerts (Priority Queue)</h4>
 <ul>
-    @foreach (var alert in criticalAlerts)
+    @foreach (var alert in FilteredCritical())
     {
         <li>@alert</li>
     }
@@ -44,7 +49,7 @@
 
 <h4>Registered Devices (Dictionary)</h4>
 <ul>
-    @foreach (var device in devices.Values)
+    @foreach (var device in FilteredDevices())
     {
         <li>@device</li>
     }
@@ -52,7 +57,7 @@
 
 <h4>Error States (HashSet)</h4>
 <ul>
-    @foreach (var error in errorStates)
+    @foreach (var error in FilteredErrors())
     {
         <li>@error</li>
     }
@@ -69,9 +74,17 @@
 
 @code {
     private string statusMessage = "Ready.";
+    private string searchTerm = "";
+
+    public class TelemetryPacket
+    {
+        public string DeviceId { get; set; } = "";
+        public double Value { get; set; }
+        public DateTime Timestamp { get; set; }
+    }
 
 
-    private Queue<string> telemetryQueue = new();
+    private Queue<TelemetryPacket> telemetryQueue = new();
     private PriorityQueue<string, int> criticalQueue = new();
     private List<string> criticalAlerts = new();
     private Stack<string> undoStack = new();
@@ -82,11 +95,17 @@
 
     private async Task SendTelemetry()
     {
-        string packet = $"Telemetry-{DateTime.Now:HHmmss}";
+
+        var packet = new TelemetryPacket
+        {
+            DeviceId = "MOISTURE-A",
+            Value = new Random().Next(20, 60),
+            Timestamp = DateTime.Now
+        };
         telemetryQueue.Enqueue(packet);
-        var response = await Http.PostAsJsonAsync("/api/commandstream/telemetry", packet);
+        var response = await Http.PostAsJsonAsync("/api/commandstream/telemetry", $"Telemetry-{DateTime.Now:HHmmss}");
         statusMessage = await response.Content.ReadAsStringAsync();
-        UpdateSuggestions("telemetry");
+        UpdateSuggestions("telemetry", packet.Value);
     }
 
 
@@ -156,18 +175,19 @@
     }
 
 
-    private void UpdateSuggestions(string action)
+    private void UpdateSuggestions(string action, double value = 0)
     {
         suggestions.Clear();
-        if (action == "telemetry")
+           if (action == "telemetry")
         {
-            suggestions.Add("Check moisture sensor");
-            suggestions.Add("Review latest telemetry logs");
+            if (value < 30)
+                suggestions.Add("Moisture low --> Suggest Pump On");
+            else
+                suggestions.Add("Moisture normal --> No action needed");
         }
         else if (action == "critical")
         {
-            suggestions.Add("Trigger emergency pump shutdown");
-            suggestions.Add("Inspect power relay immediately");
+            suggestions.Add("Critical alert --> Inspect relay immediately");
         }
         else if (action == "command")
         {
@@ -175,4 +195,30 @@
             suggestions.Add("Schedule follow-up command");
         }
     }
+
+
+    private void ApplyFilter()
+    {
+        statusMessage = $"Filter applied: {searchTerm}";
+    }
+
+    private IEnumerable<TelemetryPacket> FilteredTelemetry() =>
+        string.IsNullOrWhiteSpace(searchTerm)
+            ? telemetryQueue
+            : telemetryQueue.Where(p => p.DeviceId.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+
+    private IEnumerable<string> FilteredCritical() =>
+        string.IsNullOrWhiteSpace(searchTerm)
+            ? criticalAlerts
+            : criticalAlerts.Where(a => a.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+
+    private IEnumerable<string> FilteredDevices() =>
+        string.IsNullOrWhiteSpace(searchTerm)
+            ? devices.Values
+            : devices.Values.Where(d => d.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+
+    private IEnumerable<string> FilteredErrors() =>
+        string.IsNullOrWhiteSpace(searchTerm)
+            ? errorStates
+            : errorStates.Where(e => e.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
 }
