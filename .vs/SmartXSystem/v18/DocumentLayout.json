@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\majol\\SmartXSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\WeatherForecastController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SmartX.Api\\SmartX.Api\\Controllers\\WeatherForecastController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\_Imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -111,19 +111,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CommandStreamController.cs",
+              "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
+              "RelativeDocumentMoniker": "SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
+              "ToolTip": "C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
+              "RelativeToolTip": "SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAiwHQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T16:52:36.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "CommandStream.razor",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
               "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
               "ToolTip": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAqwC4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-10-16T18:49:46.594Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Orders.razor",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
               "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
@@ -136,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "OrdersController.cs",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\OrdersController.cs",
               "RelativeDocumentMoniker": "SmartX.Api\\SmartX.Api\\Controllers\\OrdersController.cs",
@@ -149,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "SmartX.Api\\SmartX.Api\\Controllers\\WeatherForecastController.cs",
@@ -158,19 +171,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-15T14:36:51.124Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CommandStreamController.cs",
-              "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
-              "RelativeDocumentMoniker": "SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
-              "ToolTip": "C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
-              "RelativeToolTip": "SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACoAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T16:52:36.862Z",
               "EditorCaption": ""
             },
             {

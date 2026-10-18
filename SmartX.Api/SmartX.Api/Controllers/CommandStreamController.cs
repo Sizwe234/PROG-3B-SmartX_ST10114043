@@ -73,6 +73,22 @@ namespace SmartX.Api.Controllers
 			return Ok(new { message = $"Device '{deviceId}' registered." });
 		}
 
+		// POST: api/commandstream/removeDevice
+		[HttpPost("removeDevice")]
+		public IActionResult RemoveDevice([FromBody] string deviceId)
+		{
+			if (Devices.ContainsKey(deviceId))
+			{
+				Devices.Remove(deviceId);
+				return Ok(new { message = $"Device '{deviceId}' removed." });
+
+			}
+			else
+			{
+				return NotFound(new { message = $"Device '{deviceId}' not found." });
+			}
+		}
+
 		// POST: api/commandstream/error
 		[HttpPost("error")]
 		public IActionResult AddError([FromBody] string error)

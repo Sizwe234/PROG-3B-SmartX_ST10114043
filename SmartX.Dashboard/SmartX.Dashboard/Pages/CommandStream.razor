@@ -49,9 +49,12 @@
 
 <h4>Registered Devices (Dictionary)</h4>
 <ul>
-    @foreach (var device in FilteredDevices())
+    @foreach (var device in devices.Keys)
     {
-        <li>@device</li>
+        <li>
+            @device - @devices[device]
+            <button @onclick="() => RemoveDevice(device)">Remove</button>
+        </li>
     }
 </ul>
 
@@ -150,6 +153,19 @@
         devices[id] = $"Registered {id}";
         var response = await Http.PostAsJsonAsync("/api/commandstream/register", id);
         statusMessage = await response.Content.ReadAsStringAsync();
+    }
+      private async Task RemoveDevice(string id)
+    {
+        if (devices.ContainsKey(id))
+        {
+            devices.Remove(id);
+            var response = await Http.PostAsJsonAsync("/api/commandstream/removeDevice", id);
+            statusMessage = await response.Content.ReadAsStringAsync();
+        }
+        else
+        {
+            statusMessage = $"Device {id} not found.";
+        }
     }
 
 
