@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\majol\\SmartXSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -37,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Layout\\NavMenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -102,7 +102,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -110,7 +110,33 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CommandStream.razor",
+              "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
+              "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
+              "ToolTip": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
+              "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAAAIYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-16T18:49:46.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Orders.razor",
+              "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
+              "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
+              "ToolTip": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
+              "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAAAI0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-18T11:50:31.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "OrdersController.cs",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\OrdersController.cs",
               "RelativeDocumentMoniker": "SmartX.Api\\SmartX.Api\\Controllers\\OrdersController.cs",
@@ -123,20 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Orders.razor",
-              "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
-              "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
-              "ToolTip": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
-              "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-18T11:50:31.834Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "SmartX.Api\\SmartX.Api\\Controllers\\WeatherForecastController.cs",
@@ -149,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "CommandStreamController.cs",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
               "RelativeDocumentMoniker": "SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
@@ -162,7 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "_Imports.razor",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\_Imports.razor",
               "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\_Imports.razor",
@@ -175,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "App.razor",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\App.razor",
               "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\App.razor",
@@ -188,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Weather.razor",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Weather.razor",
               "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Weather.razor",
@@ -201,7 +214,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Home.razor",
@@ -214,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Counter.razor",
               "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Counter.razor",
               "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Counter.razor",
@@ -223,19 +236,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-10-17T11:52:46.954Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CommandStream.razor",
-              "DocumentMoniker": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
-              "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
-              "ToolTip": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
-              "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-16T18:49:46.594Z",
               "EditorCaption": ""
             },
             {
