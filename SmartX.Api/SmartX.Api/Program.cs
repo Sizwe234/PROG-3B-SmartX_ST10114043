@@ -11,11 +11,11 @@ namespace SmartX.Api
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
-			// Add CORS policy to allow Dashboard (http://localhost:5260)
+			// Add CORS policy to allow Dashboard 
 			builder.Services.AddCors(options =>
 			{
 				options.AddPolicy("AllowDashboard",
-					policy => policy.WithOrigins("http://localhost:5260")
+					policy => policy.WithOrigins("http://localhost:5259")
 									.AllowAnyHeader()
 									.AllowAnyMethod());
 			});
