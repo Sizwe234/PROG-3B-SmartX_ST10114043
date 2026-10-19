@@ -64,6 +64,12 @@ namespace SmartX.Api.Controllers
 			public string Status { get; set; } = "";
 		}
 
+		public class SuggestionRequest
+		{
+			public string DeviceId { get; set; } = "";
+			public double Value { get; set; } 
+		}
+
 
 
 		[HttpPost("telemetry")]
@@ -146,6 +152,22 @@ namespace SmartX.Api.Controllers
 			return Ok(new { message = $"Error '{request.Error}' tracked for {request.DeviceId}." });
 		}
 
+		[HttpPost("suggestion")]
+		public IActionResult SuggestAction([FromBody] SuggestionRequest request)
+		{
+			if (request.DeviceId.StartsWith("MOISTURE", StringComparison.OrdinalIgnoreCase) && request.Value < 30)
+			{
+				return Ok(new { suggestion = $"Moisture low on {request.DeviceId}. Suggested action: Activate Pump A." });
+			}
+			else if (request.DeviceId.StartsWith("POWER", StringComparison.OrdinalIgnoreCase) && request.Value > 1000)
+			{
+				return Ok(new { Suggestion = $"High power usage detected on {request.DeviceId}. Suggested action: Inspect relay or shut down non-essential devices. " });
+			}
+			else
+			{
+				return Ok(new { suggestion = $"No predictive action required for {request.DeviceId} at value {request.Value}." });
+			}
+		}
 
 		[HttpGet("status")]
 		public IActionResult Status()
