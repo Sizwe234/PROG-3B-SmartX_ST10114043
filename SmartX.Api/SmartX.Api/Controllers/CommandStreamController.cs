@@ -7,102 +7,149 @@ namespace SmartX.Api.Controllers
 	[Route("api/[controller]")]
 	public class CommandStreamController : ControllerBase
 	{
-		// Queue for normal telemetry packets (FIFO)
-		private static readonly Queue<string> TelemetryQueue = new();
 
-		// Critical alerts get pushed into this priority queue to be considered first
-		private static readonly PriorityQueue<string, int> CriticalAlerts = new();
+		private static readonly Queue<TelemetryRequest> TelemetryQueue = new();
 
-		// Manually override commands get stacked here so we can undo the previous one
-		private static readonly Stack<string> CommandHistory = new();
 
-		// Dictionary keeps track of registered devices for fast lookups using IDs
+		private static readonly PriorityQueue<CriticalRequest, int> CriticalAlerts = new();
+
+
+		private static readonly Stack<CommandRequest> CommandHistory = new();
+
+
 		private static readonly Dictionary<string, string> Devices = new();
 
-		// HashSet stores unique error states so we don’t process things twice
-		private static readonly HashSet<string> ErrorStates = new();
 
-		// POST: api/commandstream/telemetry
+		private static readonly HashSet<ErrorRequest> ErrorStates = new();
+
+
+
+		public class TelemetryRequest
+		{
+			public string DeviceId { get; set; } = "";
+			public double Value { get; set; }
+		}
+
+
+		public class CriticalRequest
+		{
+			public string DeviceId { get; set; } = "";
+			public string Alert { get; set; } = "";
+		}
+
+
+		public class CommandRequest
+		{
+			public string DeviceId { get; set; } = "";
+			public string Command { get; set; } = "";
+		}
+
+
+		public class RegisterRequest
+		{
+			public string DeviceId { get; set; } = "";
+		}
+
+
+		public class ErrorRequest
+		{
+			public string DeviceId { get; set; } = "";
+			public string Error { get; set; } = "";
+		}
+
+
+		public class DeviceUpdateRequest
+		{
+			public string DeviceId { get; set; } = "";
+			public string Status { get; set; } = "";
+		}
+
+
+
 		[HttpPost("telemetry")]
-		public IActionResult AddTelemetry([FromBody] string packet)
+		public IActionResult AddTelemetry([FromBody] TelemetryRequest request)
 		{
-			// Drop telemetry packet into the FIFO queue
-			TelemetryQueue.Enqueue(packet);
-			return Ok(new { message = "Telemetry packet queued." });
+			TelemetryQueue.Enqueue(request);
+			return Ok(new { message = $"Telemetry from {request.DeviceId} queued with value {request.Value}." });
 		}
 
-		// POST: api/commandstream/critical
+
 		[HttpPost("critical")]
-		public IActionResult AddCriticalAlert([FromBody] string alert)
+		public IActionResult AddCriticalAlert([FromBody] CriticalRequest request)
 		{
-			// Add critical alert to the priority queue
-			CriticalAlerts.Enqueue(alert, 0); 
-			return Ok(new { message = "Critical alert queued with priority." });
+			CriticalAlerts.Enqueue(request, 0);
+			return Ok(new { message = $"Critical alert '{request.Alert}' queued for {request.DeviceId}." });
 		}
 
-		// POST: api/commandstream/command
+
 		[HttpPost("command")]
-		public IActionResult SendCommand([FromBody] string command)
+		public IActionResult SendCommand([FromBody] CommandRequest request)
 		{
-			// Put command on the stack so we can undo later if needed
-			CommandHistory.Push(command);
-			return Ok(new { message = $"Command '{command}' sent." });
+			CommandHistory.Push(request);
+			return Ok(new { message = $"Command '{request.Command}' sent to {request.DeviceId}." });
 		}
 
-		// POST: api/commandstream/undo
+
 		[HttpPost("undo")]
 		public IActionResult UndoCommand()
 		{
 			if (CommandHistory.Count == 0)
-			{
-				// If stack is empty, nothing to undo
 				return BadRequest(new { message = "No commands to undo." });
-			}
 
 			var last = CommandHistory.Pop();
-			// Pop the last command off the stack and confirm that it was undone
-			return Ok(new { message = $"Undid command '{last}'." });
+			return Ok(new { message = $"Undid command '{last.Command}' for {last.DeviceId}." });
 		}
 
-		// POST: api/commandstream/register
+
 		[HttpPost("register")]
-		public IActionResult RegisterDevice([FromBody] string deviceId)
+		public IActionResult RegisterDevice([FromBody] RegisterRequest request)
 		{
-			// Add device into dictionary with status set to online
-			Devices[deviceId] = "Online";
-			return Ok(new { message = $"Device '{deviceId}' registered." });
+			Devices[request.DeviceId] = "Online";
+			return Ok(new { message = $"Device '{request.DeviceId}' registered." });
 		}
 
-		// POST: api/commandstream/removeDevice
-		[HttpPost("removeDevice")]
-		public IActionResult RemoveDevice([FromBody] string deviceId)
-		{
-			if (Devices.ContainsKey(deviceId))
-			{
-				Devices.Remove(deviceId);
-				return Ok(new { message = $"Device '{deviceId}' removed." });
 
+		[HttpPost("removeDevice")]
+		public IActionResult RemoveDevice([FromBody] RegisterRequest request)
+		{
+			if (Devices.ContainsKey(request.DeviceId))
+			{
+				Devices.Remove(request.DeviceId);
+				return Ok(new { message = $"Device '{request.DeviceId}' removed." });
 			}
 			else
 			{
-				return NotFound(new { message = $"Device '{deviceId}' not found." });
+				return NotFound(new { message = $"Device '{request.DeviceId}' not found." });
 			}
 		}
 
-		// POST: api/commandstream/error
-		[HttpPost("error")]
-		public IActionResult AddError([FromBody] string error)
+
+		[HttpPut("updateDevice")]
+		public IActionResult UpdateDevice([FromBody] DeviceUpdateRequest request)
 		{
-			// Add error into hashset so duplicates don’t get tracked twice
-			ErrorStates.Add(error);
-			return Ok(new { message = $"Error '{error}' tracked." });
+			if (Devices.ContainsKey(request.DeviceId))
+			{
+				Devices[request.DeviceId] = request.Status;
+				return Ok(new { message = $"Device '{request.DeviceId}' updated to status '{request.Status}'." });
+			}
+			else
+			{
+				return NotFound(new { message = $"Device '{request.DeviceId}' not found." });
+			}
 		}
 
-		// GET: api/commandstream/status
+
+		[HttpPost("error")]
+		public IActionResult AddError([FromBody] ErrorRequest request)
+		{
+			ErrorStates.Add(request);
+			return Ok(new { message = $"Error '{request.Error}' tracked for {request.DeviceId}." });
+		}
+
+
 		[HttpGet("status")]
 		public IActionResult Status()
 		{
-			// Return snapshot counts of everything we're tracking
 			return Ok(new
 			{
 				telemetryCount = TelemetryQueue.Count,

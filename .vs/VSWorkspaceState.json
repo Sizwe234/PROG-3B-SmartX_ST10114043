@@ -2,8 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\SmartX.Api",
-    "\\SmartX.Api\\SmartX.Api"
+    "\\SmartX.Api\\SmartX.Api",
+    "\\SmartX.Api\\SmartX.Api\\Controllers",
+    "\\SmartX.Dashboard",
+    "\\SmartX.Dashboard\\SmartX.Dashboard",
+    "\\SmartX.Dashboard\\SmartX.Dashboard\\Pages"
   ],
-  "SelectedNode": "\\SmartX.Api\\SmartX.Api\\Program.cs",
+  "SelectedNode": "\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
   "PreviewInSolutionExplorer": false
 }

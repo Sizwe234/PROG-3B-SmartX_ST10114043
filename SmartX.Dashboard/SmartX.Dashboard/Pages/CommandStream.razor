@@ -3,9 +3,7 @@
 
 <h3>Real-Time Command Stream & History</h3>
 
-
 <p style="color:green">@statusMessage</p>
-
 
 <div style="margin-bottom:15px;">
     <button @onclick="SendTelemetry">Send Telemetry Packet</button>
@@ -14,14 +12,12 @@
     <button @onclick="UndoCommand">Undo Last Command</button>
     <button @onclick="RegisterDevice">Register Device</button>
     <button @onclick="AddError">Add Error State</button>
-    <button @onclick="GetStatus">Check System Status</button>
 </div>
 
 <div style="margin-bottom:15px;">
-    <input @bind="searchTerm" placeholder="Search devices or alerts..." />
+    <input id="searchBox" name="searchBox" @bind="searchTerm" placeholder="Search devices or alerts..." />
     <button @onclick="ApplyFilter">Filter</button>
 </div>
-
 
 <h4>Telemetry Queue (FIFO)</h4>
 <ul>
@@ -66,7 +62,6 @@
     }
 </ul>
 
-
 <h4>Suggested Actions</h4>
 <ul>
     @foreach (var suggestion in suggestions)
@@ -86,7 +81,6 @@
         public DateTime Timestamp { get; set; }
     }
 
-
     private Queue<TelemetryPacket> telemetryQueue = new();
     private PriorityQueue<string, int> criticalQueue = new();
     private List<string> criticalAlerts = new();
@@ -95,39 +89,30 @@
     private HashSet<string> errorStates = new();
     private List<string> suggestions = new();
 
-
-    private async Task SendTelemetry()
+   private async Task SendTelemetry()
     {
-
-        var packet = new TelemetryPacket
-        {
-            DeviceId = "MOISTURE-A",
-            Value = new Random().Next(20, 60),
-            Timestamp = DateTime.Now
-        };
-        telemetryQueue.Enqueue(packet);
-        var response = await Http.PostAsJsonAsync("/api/commandstream/telemetry", $"Telemetry-{DateTime.Now:HHmmss}");
+        var packet = new { deviceId = "MOISTURE-A", value = new Random().Next(20, 60) };
+        telemetryQueue.Enqueue(new TelemetryPacket { DeviceId = packet.deviceId, Value = packet.value, Timestamp = DateTime.Now });
+        var response = await Http.PostAsJsonAsync("/api/commandstream/telemetry", packet);
         statusMessage = await response.Content.ReadAsStringAsync();
-        UpdateSuggestions("telemetry", packet.Value);
+        UpdateSuggestions("telemetry", packet.value);
     }
-
 
     private async Task SendCritical()
     {
         string alert = $"Critical-{DateTime.Now:HHmmss}";
-        criticalQueue.Enqueue(alert, 1); 
+        criticalQueue.Enqueue(alert, 1);
         criticalAlerts.Add(alert);
-        var response = await Http.PostAsJsonAsync("/api/commandstream/critical", alert);
+        var response = await Http.PostAsJsonAsync("/api/commandstream/critical", new { deviceId = "Device-A", alert = alert });
         statusMessage = await response.Content.ReadAsStringAsync();
         UpdateSuggestions("critical");
     }
-
 
     private async Task SendCommand()
     {
         string command = "Pump-On";
         undoStack.Push(command);
-        var response = await Http.PostAsJsonAsync("/api/commandstream/command", command);
+        var response = await Http.PostAsJsonAsync("/api/commandstream/command", new { deviceId = "Device-A", command = command });
         statusMessage = await response.Content.ReadAsStringAsync();
         UpdateSuggestions("command");
     }
@@ -137,7 +122,7 @@
         if (undoStack.Count > 0)
         {
             string last = undoStack.Pop();
-            var response = await Http.PostAsJsonAsync("/api/commandstream/undo", last);
+            var response = await Http.PostAsJsonAsync("/api/commandstream/undo", new { deviceId = "Device-A", command = last });
             statusMessage = await response.Content.ReadAsStringAsync();
         }
         else
@@ -146,21 +131,21 @@
         }
     }
 
-
     private async Task RegisterDevice()
     {
         string id = $"Device-{devices.Count + 1}";
         devices[id] = $"Registered {id}";
-        var response = await Http.PostAsJsonAsync("/api/commandstream/register", id);
+        var response = await Http.PostAsJsonAsync("/api/commandstream/register", new { deviceId = id });
         statusMessage = await response.Content.ReadAsStringAsync();
     }
-      private async Task RemoveDevice(string id)
+
+    private async Task RemoveDevice(string id)
     {
         if (devices.ContainsKey(id))
         {
-            devices.Remove(id);
-            var response = await Http.PostAsJsonAsync("/api/commandstream/removeDevice", id);
-            statusMessage = await response.Content.ReadAsStringAsync();
+        devices.Remove(id);
+        var response = await Http.PostAsJsonAsync("/api/commandstream/removeDevice", new { deviceId = id });
+        statusMessage = await response.Content.ReadAsStringAsync();
         }
         else
         {
@@ -168,13 +153,12 @@
         }
     }
 
-
     private async Task AddError()
     {
         string error = $"Error-{DateTime.Now:HHmmss}";
         if (errorStates.Add(error))
         {
-            var response = await Http.PostAsJsonAsync("/api/commandstream/error", error);
+            var response = await Http.PostAsJsonAsync("/api/commandstream/error", new { deviceId = "Device-A", error = error });
             statusMessage = await response.Content.ReadAsStringAsync();
         }
         else
@@ -183,18 +167,10 @@
         }
     }
 
-
-    private async Task GetStatus()
-    {
-        var response = await Http.GetAsync("/api/commandstream/status");
-        statusMessage = await response.Content.ReadAsStringAsync();
-    }
-
-
-    private void UpdateSuggestions(string action, double value = 0)
+     private void UpdateSuggestions(string action, double value = 0)
     {
         suggestions.Clear();
-           if (action == "telemetry")
+        if (action == "telemetry")
         {
             if (value < 30)
                 suggestions.Add("Moisture low --> Suggest Pump On");
@@ -211,7 +187,6 @@
             suggestions.Add("Schedule follow-up command");
         }
     }
-
 
     private void ApplyFilter()
     {
