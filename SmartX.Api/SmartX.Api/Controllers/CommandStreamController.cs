@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SmartX.Api.Controllers
 {
@@ -187,6 +188,18 @@ namespace SmartX.Api.Controllers
 				deviceCount = Devices.Count,
 				errorCount = ErrorStates.Count
 			});
+		}
+
+		[HttpGet("telemetryHistory")]
+		public IActionResult GetTelemetryHistory()
+		{
+			return Ok(TelemetryHistory.Select(x => new
+			{
+				Timestamp = x.Key,
+				DeviceId = x.Value.DeviceId,
+				Value = x.Value.Value
+			})
+			);
 		}
 	}
 }

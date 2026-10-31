@@ -27,6 +27,14 @@
     }
 </ul>
 
+<h4>Telemetry History</h4>
+<ul>
+    @foreach (var packet in telemetryHistory)
+    {
+        <li>@packet.DeviceId - Value: @packet.Value - Time: @packet.Timestamp</li>
+    }
+</ul>
+
 <h4>Critical Alerts (Priority Queue)</h4>
 <ul>
     @foreach (var alert in FilteredCritical())
@@ -82,6 +90,7 @@
     }
 
     private Queue<TelemetryPacket> telemetryQueue = new();
+    private List<TelemetryPacket> telemetryHistory = new();
     private PriorityQueue<string, int> criticalQueue = new();
     private List<string> criticalAlerts = new();
     private Stack<string> undoStack = new();
@@ -93,6 +102,7 @@
     {
         var packet = new { deviceId = "MOISTURE-A", value = new Random().Next(20, 60) };
         telemetryQueue.Enqueue(new TelemetryPacket { DeviceId = packet.deviceId, Value = packet.value, Timestamp = DateTime.Now });
+        telemetryHistory.Add(new TelemetryPacket { DeviceId = packet.deviceId, Value = packet.value, Timestamp = DateTime.Now });
         var response = await Http.PostAsJsonAsync("/api/commandstream/telemetry", packet);
         statusMessage = await response.Content.ReadAsStringAsync();
         UpdateSuggestions("telemetry", packet.value);
