@@ -10,6 +10,9 @@ namespace SmartX.Api.Controllers
 
 		private static readonly Queue<TelemetryRequest> TelemetryQueue = new();
 
+		
+		private static readonly SortedDictionary<DateTime, TelemetryRequest> TelemetryHistory = new();
+
 
 		private static readonly PriorityQueue<CriticalRequest, int> CriticalAlerts = new();
 
@@ -76,6 +79,9 @@ namespace SmartX.Api.Controllers
 		public IActionResult AddTelemetry([FromBody] TelemetryRequest request)
 		{
 			TelemetryQueue.Enqueue(request);
+
+			TelemetryHistory[DateTime.Now] = request;
+
 			return Ok(new { message = $"Telemetry from {request.DeviceId} queued with value {request.Value}." });
 		}
 
@@ -175,6 +181,7 @@ namespace SmartX.Api.Controllers
 			return Ok(new
 			{
 				telemetryCount = TelemetryQueue.Count,
+				telemetryHistoryCount = TelemetryHistory.Count,
 				criticalCount = CriticalAlerts.Count,
 				commandHistoryCount = CommandHistory.Count,
 				deviceCount = Devices.Count,
