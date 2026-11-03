@@ -140,7 +140,7 @@
               "RelativeDocumentMoniker": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
               "ToolTip": "C:\\Users\\majol\\SmartXSystem\\SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\CommandStream.razor",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAAAF4AAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-10-16T18:49:46.594Z",
               "EditorCaption": ""
@@ -155,8 +155,7 @@
               "RelativeToolTip": "SmartX.Api\\SmartX.Api\\Controllers\\CommandStreamController.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAAYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T16:52:36.862Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-16T16:52:36.862Z"
             },
             {
               "$type": "Document",
@@ -168,8 +167,7 @@
               "RelativeToolTip": "SmartX.Api\\SmartX.Api\\Controllers\\OrdersController.cs",
               "ViewState": "AgIAAEEAAAAAAAAAAAAiwGIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T11:57:15.131Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-16T11:57:15.131Z"
             },
             {
               "$type": "Document",
@@ -181,8 +179,7 @@
               "RelativeToolTip": ".github\\workflows\\dotnet.yml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2026-10-30T10:28:42.203Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T10:28:42.203Z"
             },
             {
               "$type": "Document",
@@ -194,8 +191,7 @@
               "RelativeToolTip": "README.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-10-30T10:28:10.446Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T10:28:10.446Z"
             },
             {
               "$type": "Document",
@@ -207,8 +203,7 @@
               "RelativeToolTip": "SmartX.Tests\\UnitTest1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T10:27:53.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T10:27:53.629Z"
             },
             {
               "$type": "Document",
@@ -220,8 +215,7 @@
               "RelativeToolTip": "SmartX.Tests\\SmartX.Tests.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-10-30T10:27:43.415Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T10:27:43.415Z"
             },
             {
               "$type": "Document",
@@ -233,8 +227,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Weather.razor",
               "ViewState": "AgIAABgAAAAAAAAAAAAiwDkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-15T14:40:32.896Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T14:40:32.896Z"
             },
             {
               "$type": "Document",
@@ -246,8 +239,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\_Imports.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-18T12:28:59.548Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T12:28:59.548Z"
             },
             {
               "$type": "Document",
@@ -259,8 +251,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Orders.razor",
               "ViewState": "AgIAAGwAAAAAAAAAAAAiwI0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-18T11:50:31.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T11:50:31.834Z"
             },
             {
               "$type": "Document",
@@ -272,8 +263,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Home.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-17T11:52:53.51Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-17T11:52:53.51Z"
             },
             {
               "$type": "Document",
@@ -285,8 +275,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Pages\\Counter.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-17T11:52:46.954Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-17T11:52:46.954Z"
             },
             {
               "$type": "Document",
@@ -298,8 +287,7 @@
               "RelativeToolTip": "SmartX.Api\\SmartX.Api\\Controllers\\WeatherForecastController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T14:36:51.124Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T14:36:51.124Z"
             },
             {
               "$type": "Document",
@@ -311,8 +299,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\wwwroot\\css\\app.css",
               "ViewState": "AgIAAEQAAAAAAAAAAAAwwGcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-10-30T10:19:32.882Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T10:19:32.882Z"
             },
             {
               "$type": "Document",
@@ -324,8 +311,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Layout\\NavMenu.razor.css",
               "ViewState": "AgIAADAAAAAAAAAAAAAwwFMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-10-18T13:49:39.24Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T13:49:39.24Z"
             },
             {
               "$type": "Document",
@@ -337,8 +323,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\App.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-18T12:26:59.12Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T12:26:59.12Z"
             },
             {
               "$type": "Document",
@@ -350,8 +335,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Layout\\NavMenu.razor",
               "ViewState": "AgIAABMAAAAAAAAAAAAiwDQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-16T19:00:22.633Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-16T19:00:22.633Z"
             },
             {
               "$type": "Document",
@@ -363,8 +347,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Layout\\MainLayout.razor.css",
               "ViewState": "AgIAACoAAAAAAAAAAAAwwE0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-10-30T10:17:52.965Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T10:17:52.965Z"
             },
             {
               "$type": "Document",
@@ -376,8 +359,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T14:46:25.051Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T14:46:25.051Z"
             },
             {
               "$type": "Document",
@@ -389,8 +371,7 @@
               "RelativeToolTip": "SmartX.Dashboard\\SmartX.Dashboard\\Layout\\MainLayout.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-10-18T13:49:32.701Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-18T13:49:32.701Z"
             },
             {
               "$type": "Document",
@@ -402,8 +383,7 @@
               "RelativeToolTip": "SmartX.Api\\SmartX.Api\\Program.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAiwC4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-15T21:47:37.274Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-15T21:47:37.274Z"
             },
             {
               "$type": "Document",
